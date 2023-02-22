@@ -23,7 +23,6 @@ public class MachineACafeTest {
     @Test
     public void Test_CAS2()
     {
-
         //Etant donné pas de café
         MachineACafe machine = new MachineACafeBuilder()
                 .SansCafé()
@@ -43,6 +42,7 @@ public class MachineACafeTest {
         MachineACafe machine = new MachineACafeBuilder()
                 .SansEau()
                 .Build();
+
         //Quand l’utilisateur met somme >= 40 centimes
         machine.Insert( 40 );
 

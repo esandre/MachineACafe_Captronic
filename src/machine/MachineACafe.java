@@ -18,10 +18,10 @@ public class MachineACafe {
        return servedCafe;
     }
 
-    public void Insert(int v) {
-        if(v >= 40 && eau && gobelets && stockCafe > 0) {
+    public void Insert(int sommeEnCentimes) {
+        if(sommeEnCentimes >= 40 && eau && gobelets && stockCafe > 0) {
             servedCafe++;
-            somme = v;
+            somme = sommeEnCentimes;
         }
     }
 
