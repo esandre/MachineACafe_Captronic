@@ -2,7 +2,7 @@ import machine.MachineACafe;
 import org.junit.Test;
 import utilities.MachineACafeBuilder;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.*;
 
 public class MachineACafeTest {
     @Test
@@ -16,9 +16,9 @@ public class MachineACafeTest {
 
         //Alors somme encaissée
         int somme = machine.GetSomme();
-        assertEquals( 40, somme);
+        assertThat(somme).isEqualTo(40);
         //Et nb cafés augmente de 1
-        assertEquals( nbCafe + 1, machine.GetNbCafe() );
+        assertThat(machine.GetNbCafe()).isEqualTo(nbCafe +1);
     }
 
     @Test
@@ -35,7 +35,7 @@ public class MachineACafeTest {
 
         //Alors retourne somme
         int somme = machine.GetSomme();
-        assertEquals( 0, somme);
+        assertThat(somme).isZero();
     }
 
     @Test
@@ -50,7 +50,7 @@ public class MachineACafeTest {
 
         //Alors retourne somme
         int somme = machine.GetSomme();
-        assertEquals( 0, somme);
+        assertThat(somme).isZero();
     }
 
     @Test
@@ -66,7 +66,7 @@ public class MachineACafeTest {
 
         //Alors retourne somme
         int somme = machine.GetSomme();
-        assertEquals( 0, somme);
+        assertThat(somme).isZero();
     }
 
     @Test
@@ -81,9 +81,9 @@ public class MachineACafeTest {
 
         //Alors somme non encaissée
         int somme = machine.GetSomme();
-        assertEquals( 0, somme);
+        assertThat(somme).isZero();
         //Et nb cafés n'augmente pas
-        assertEquals( nbCafe, machine.GetNbCafe() );
+        assertThat(machine.GetNbCafe()).isEqualTo(nbCafe);
     }
 }
 
