@@ -1,20 +1,26 @@
 package utilities;
 
 import machine.MachineACafe;
+import machine.eau.IFournisseurEau;
+import java.util.Optional;
 
 public class MachineACafeBuilder {
-
     private boolean ayantDesGobelets = true;
-    private boolean ayantDeLEau = true;
     private boolean ayantDuCafé = true;
+    private Optional<IFournisseurEau> fournisseurEau = Optional.empty();
 
     public static MachineACafe Default() {
         return new MachineACafeBuilder().Build();
     }
 
     public MachineACafe Build(){
-        var fournisseurEau = new FournisseurEauMock(ayantDeLEau);
-        return new MachineACafe(ayantDuCafé ? 1 : 0, fournisseurEau, ayantDesGobelets);
+        var fournisseurChoisi = fournisseurEau.orElse(new FournisseurEauMock(true));
+        return new MachineACafe(ayantDuCafé ? 1 : 0, fournisseurChoisi, ayantDesGobelets);
+    }
+
+    public MachineACafeBuilder AyantPourFournisseurEau(IFournisseurEau fournisseurEau){
+        this.fournisseurEau = Optional.of(fournisseurEau);
+        return this;
     }
 
     public MachineACafeBuilder SansGobelets(){
@@ -23,7 +29,7 @@ public class MachineACafeBuilder {
     }
 
     public MachineACafeBuilder SansEau() {
-        ayantDeLEau = false;
+        fournisseurEau = Optional.of(new FournisseurEauMock(false));
         return this;
     }
 
