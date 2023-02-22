@@ -16,17 +16,17 @@ public class MachineACafeMatchers extends AbstractAssert<MachineACafeMatchers, M
     }
 
     public MachineACafeMatchers rendLArgent(){
-        if(actual.GetSomme() != 0){
+        if(actual.GetSommeEnCentimes() != 0){
             failWithMessage("Il était attendu que la machine n'ait pas d'argent encaissé. Elle possède %s",
-                    actual.GetSomme());
+                    actual.GetSommeEnCentimes());
         }
         return this;
     }
 
     public MachineACafeMatchers encaisse(int somme){
-        if(actual.GetSomme() != somme){
+        if(actual.GetSommeEnCentimes() != somme){
             failWithMessage("Il était attendu que la machine encaise %s. Elle a encaissé %s",
-                    somme, actual.GetSomme());
+                    somme, actual.GetSommeEnCentimes());
         }
         return this;
     }

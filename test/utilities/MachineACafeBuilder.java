@@ -4,30 +4,30 @@ import machine.MachineACafe;
 
 public class MachineACafeBuilder {
 
-    private boolean _ayantDesGobelets = true;
-    private boolean _ayantDeLEau = true;
-    private boolean _ayantDuCafé = true;
+    private boolean ayantDesGobelets = true;
+    private boolean ayantDeLEau = true;
+    private boolean ayantDuCafé = true;
 
     public static MachineACafe Default() {
         return new MachineACafeBuilder().Build();
     }
 
     public MachineACafe Build(){
-        return new MachineACafe(_ayantDuCafé ? 1 : 0, _ayantDeLEau, _ayantDesGobelets);
+        return new MachineACafe(ayantDuCafé ? 1 : 0, ayantDeLEau, ayantDesGobelets);
     }
 
     public MachineACafeBuilder SansGobelets(){
-        _ayantDesGobelets = false;
+        ayantDesGobelets = false;
         return this;
     }
 
     public MachineACafeBuilder SansEau() {
-        _ayantDeLEau = false;
+        ayantDeLEau = false;
         return this;
     }
 
     public MachineACafeBuilder SansCafé() {
-        _ayantDuCafé = false;
+        ayantDuCafé = false;
         return this;
     }
 }

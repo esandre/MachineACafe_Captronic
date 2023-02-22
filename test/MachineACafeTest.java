@@ -12,7 +12,7 @@ public class MachineACafeTest {
         MachineACafe machine = MachineACafeBuilder.Default();
         int nbCafe = machine.GetNbCafe();
         //Quand l’utilisateur met somme >= 40 centimes
-        machine.Insert( 40 );
+        machine.Insérer( 40 );
 
         //Alors somme encaissée
         assertThat(machine).encaisse(40);
@@ -29,7 +29,7 @@ public class MachineACafeTest {
                 .Build();
 
         //Quand l’utilisateur met somme >= 40 centimes
-        machine.Insert( 40 );
+        machine.Insérer( 40 );
 
         //Alors retourne somme
         assertThat(machine).rendLArgent();
@@ -44,7 +44,7 @@ public class MachineACafeTest {
                 .Build();
 
         //Quand l’utilisateur met somme >= 40 centimes
-        machine.Insert( 40 );
+        machine.Insérer( 40 );
 
         //Alors retourne somme
         assertThat(machine).rendLArgent();
@@ -59,7 +59,7 @@ public class MachineACafeTest {
                 .Build();
 
         //Quand l’utilisateur met somme >= 40 centimes
-        machine.Insert( 40 );
+        machine.Insérer( 40 );
 
         //Alors retourne somme
         assertThat(machine).rendLArgent();
@@ -73,7 +73,7 @@ public class MachineACafeTest {
         int nbCafe = machine.GetNbCafe();
 
         //Quand l’utilisateur met somme < 40 centimes
-        machine.Insert( 39 );
+        machine.Insérer( 39 );
 
         //Alors somme non encaissée
         assertThat(machine).rendLArgent();

@@ -4,28 +4,32 @@ public class MachineACafe {
 
     private final boolean eau;
     private final boolean gobelets;
-    private int servedCafe = 0;
-    private int somme = 0;
-    private int stockCafe = 0;
+    private int cafésServis = 0;
+    private int sommeEncaisséeEnCentimes = 0;
+    private int stockCafe;
 
-    public MachineACafe(int i, boolean eau, boolean gobelets) {
-        stockCafe = i;
+    public MachineACafe(int stockCafe, boolean eau, boolean gobelets) {
+        this.stockCafe = stockCafe;
         this.eau = eau;
         this.gobelets = gobelets;
     }
 
     public int GetNbCafe() {
-       return servedCafe;
+       return cafésServis;
     }
 
-    public void Insert(int sommeEnCentimes) {
-        if(sommeEnCentimes >= 40 && eau && gobelets && stockCafe > 0) {
-            servedCafe++;
-            somme = sommeEnCentimes;
+    private boolean PeutServirCafé(int sommeInséréeEnCentimes){
+        return sommeInséréeEnCentimes >= 40 && eau && gobelets && stockCafe > 0;
+    }
+
+    public void Insérer(int sommeEnCentimes) {
+        if(PeutServirCafé(sommeEnCentimes)) {
+            cafésServis++;
+            sommeEncaisséeEnCentimes = sommeEnCentimes;
         }
     }
 
-    public int GetSomme() {
-        return somme;
+    public int GetSommeEnCentimes() {
+        return sommeEncaisséeEnCentimes;
     }
 }
