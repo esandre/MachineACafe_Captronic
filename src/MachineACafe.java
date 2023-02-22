@@ -2,7 +2,7 @@ public class MachineACafe {
 
     private int servedCafe = 0;
 
-    public MachineACafe(int i) {
+    public MachineACafe(int i, boolean b) {
     }
     public MachineACafe() {
     }
