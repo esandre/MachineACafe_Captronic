@@ -24,7 +24,7 @@ public class MachineACafeTest {
     {
 
         //Etant donné pas de café sans café
-        MachineACafe machine = new MachineACafe(0, true);
+        MachineACafe machine = new MachineACafe(0, true, false);
         //Quand l’utilisateur met somme >= 40 centimes
         machine.Insert( 40 );
 
@@ -38,7 +38,21 @@ public class MachineACafeTest {
     {
 
         //Etant donné machine pas d'eau
-        MachineACafe machine = new MachineACafe(1, false);
+        MachineACafe machine = new MachineACafe(1, false, true);
+        //Quand l’utilisateur met somme >= 40 centimes
+        machine.Insert( 40 );
+
+        //Alors retourne somme
+        double somme = machine.GetSomme();
+        assertEquals( 0, somme, 0.05 );
+    }
+
+    @Test
+    public void Test_CAS4()
+    {
+
+        //Etant donné machine pas de gobelet
+        MachineACafe machine = new MachineACafe(1, true, false);
         //Quand l’utilisateur met somme >= 40 centimes
         machine.Insert( 40 );
 
