@@ -1,22 +1,33 @@
 public class MachineACafe {
 
+    private final boolean eau;
+    private final boolean gobelets;
     private int servedCafe = 0;
+    private int somme = 0;
+    private int stockCafe = 0;
 
-    public MachineACafe(int i, boolean b, boolean b1) {
+    public MachineACafe(int i, boolean eau, boolean gobelets) {
+        stockCafe = i;
+        this.eau = eau;
+        this.gobelets = gobelets;
     }
     public MachineACafe() {
+        eau = true;
+        gobelets = true;
     }
 
     public int GetNbCafe() {
-       return servedCafe++;
+       return servedCafe;
     }
 
-    public void Insert(double v) {
-
+    public void Insert(int v) {
+        if(v >= 40 && eau && gobelets) {
+            servedCafe++;
+            somme = v;
+        }
     }
 
-    public double GetSomme() {
-
-        return servedCafe * 0.40;
+    public int GetSomme() {
+        return somme;
     }
 }

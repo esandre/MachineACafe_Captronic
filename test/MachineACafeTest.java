@@ -13,8 +13,8 @@ public class MachineACafeTest {
         machine.Insert( 40 );
 
         //Alors somme encaissée
-        double somme = machine.GetSomme();
-        assertEquals( 0.4, somme, 0.05 );
+        int somme = machine.GetSomme();
+        assertEquals( 40, somme);
         //Et nb cafés augmente de 1
         assertEquals( nbCafe + 1, machine.GetNbCafe() );
     }
@@ -29,8 +29,8 @@ public class MachineACafeTest {
         machine.Insert( 40 );
 
         //Alors retourne somme
-        double somme = machine.GetSomme();
-        assertEquals( 0, somme, 0.05 );
+        int somme = machine.GetSomme();
+        assertEquals( 0, somme);
     }
 
     @Test
@@ -43,8 +43,8 @@ public class MachineACafeTest {
         machine.Insert( 40 );
 
         //Alors retourne somme
-        double somme = machine.GetSomme();
-        assertEquals( 0, somme, 0.05 );
+        int somme = machine.GetSomme();
+        assertEquals( 0, somme);
     }
 
     @Test
@@ -57,8 +57,25 @@ public class MachineACafeTest {
         machine.Insert( 40 );
 
         //Alors retourne somme
-        double somme = machine.GetSomme();
-        assertEquals( 0, somme, 0.05 );
+        int somme = machine.GetSomme();
+        assertEquals( 0, somme);
+    }
+
+    @Test
+    public void Test_CAS5()
+    {
+        //Etant donné
+        MachineACafe machine = new MachineACafe();
+        int nbCafe = machine.GetNbCafe();
+
+        //Quand l’utilisateur met somme < 40 centimes
+        machine.Insert( 39 );
+
+        //Alors somme non encaissée
+        int somme = machine.GetSomme();
+        assertEquals( 0, somme);
+        //Et nb cafés n'augmente pas
+        assertEquals( nbCafe, machine.GetNbCafe() );
     }
 }
 
