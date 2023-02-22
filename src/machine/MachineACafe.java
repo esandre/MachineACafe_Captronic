@@ -1,3 +1,5 @@
+package machine;
+
 public class MachineACafe {
 
     private final boolean eau;
@@ -11,17 +13,13 @@ public class MachineACafe {
         this.eau = eau;
         this.gobelets = gobelets;
     }
-    public MachineACafe() {
-        eau = true;
-        gobelets = true;
-    }
 
     public int GetNbCafe() {
        return servedCafe;
     }
 
     public void Insert(int v) {
-        if(v >= 40 && eau && gobelets) {
+        if(v >= 40 && eau && gobelets && stockCafe > 0) {
             servedCafe++;
             somme = v;
         }
