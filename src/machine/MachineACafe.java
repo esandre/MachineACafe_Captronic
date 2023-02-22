@@ -3,7 +3,7 @@ package machine;
 import machine.eau.IFournisseurEau;
 import machine.eau.PasAssezEauException;
 
-public class MachineACafe {
+public class MachineACafe implements IMachineACafe {
 
     private final IFournisseurEau fournisseurEau;
     private final boolean gobelets;
