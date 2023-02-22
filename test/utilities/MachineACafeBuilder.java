@@ -13,7 +13,8 @@ public class MachineACafeBuilder {
     }
 
     public MachineACafe Build(){
-        return new MachineACafe(ayantDuCafé ? 1 : 0, ayantDeLEau, ayantDesGobelets);
+        var fournisseurEau = new FournisseurEauMock(ayantDeLEau);
+        return new MachineACafe(ayantDuCafé ? 1 : 0, fournisseurEau, ayantDesGobelets);
     }
 
     public MachineACafeBuilder SansGobelets(){

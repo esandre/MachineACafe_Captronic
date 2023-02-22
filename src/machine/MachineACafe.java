@@ -1,16 +1,19 @@
 package machine;
 
+import machine.eau.IFournisseurEau;
+import machine.eau.PasAssezEauException;
+
 public class MachineACafe {
 
-    private final boolean eau;
+    private final IFournisseurEau fournisseurEau;
     private final boolean gobelets;
     private int cafésServis = 0;
     private int sommeEncaisséeEnCentimes = 0;
-    private int stockCafe;
+    private final int stockCafe;
 
-    public MachineACafe(int stockCafe, boolean eau, boolean gobelets) {
+    public MachineACafe(int stockCafe, IFournisseurEau eau, boolean gobelets) {
         this.stockCafe = stockCafe;
-        this.eau = eau;
+        this.fournisseurEau = eau;
         this.gobelets = gobelets;
     }
 
@@ -19,7 +22,13 @@ public class MachineACafe {
     }
 
     private boolean PeutServirCafé(int sommeInséréeEnCentimes){
-        return sommeInséréeEnCentimes >= 40 && eau && gobelets && stockCafe > 0;
+        try {
+            fournisseurEau.Consommer(1);
+        } catch (PasAssezEauException e){
+            return false;
+        }
+
+        return sommeInséréeEnCentimes >= 40 && gobelets && stockCafe > 0;
     }
 
     public void Insérer(int sommeEnCentimes) {
