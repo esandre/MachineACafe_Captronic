@@ -1,6 +1,12 @@
 public class MachineACafe {
 
     private int servedCafe = 0;
+
+    public MachineACafe(int i) {
+    }
+    public MachineACafe() {
+    }
+
     public int GetNbCafe() {
        return servedCafe++;
     }
@@ -10,6 +16,7 @@ public class MachineACafe {
     }
 
     public double GetSomme() {
-        return 0.40;
+
+        return servedCafe * 0.40;
     }
 }
