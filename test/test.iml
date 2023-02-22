@@ -24,5 +24,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="MachineACafe_Captronic" scope="TEST" />
   </component>
 </module>

@@ -1,0 +1,2 @@
+public class MachineACafe {
+}
