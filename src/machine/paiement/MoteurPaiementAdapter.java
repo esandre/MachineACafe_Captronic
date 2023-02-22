@@ -1,6 +1,7 @@
 package machine.paiement;
 
 import machine.IMachineACafe;
+import machine.MachineACafe;
 import org.bank.paiement.IMoteurPaiement;
 
 public class MoteurPaiementAdapter implements IMachineACafe {
@@ -10,8 +11,8 @@ public class MoteurPaiementAdapter implements IMachineACafe {
         this.decorated = decorated;
         moteurPaiement.ObserverPrésenceCarte(
                 iPrelevable -> {
-                    var aPuPrélever = iPrelevable.Prélever(0.40);
-                    if(aPuPrélever) decorated.Insérer(40);
+                    var aPuPrélever = iPrelevable.Prélever(MachineACafe.PrixDuCaféEnCentimes / 100.0);
+                    if(aPuPrélever) decorated.Insérer(MachineACafe.PrixDuCaféEnCentimes);
                 }
         );
     }

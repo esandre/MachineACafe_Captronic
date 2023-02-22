@@ -4,6 +4,7 @@ import machine.eau.IFournisseurEau;
 import machine.eau.PasAssezEauException;
 
 public class MachineACafe implements IMachineACafe {
+    public static final int PrixDuCaféEnCentimes = 40;
 
     private final IFournisseurEau fournisseurEau;
     private final boolean gobelets;
@@ -28,7 +29,7 @@ public class MachineACafe implements IMachineACafe {
             return false;
         }
 
-        return sommeInséréeEnCentimes >= 40 && gobelets && stockCafe > 0;
+        return sommeInséréeEnCentimes >= PrixDuCaféEnCentimes && gobelets && stockCafe > 0;
     }
 
     public void Insérer(int sommeEnCentimes) {

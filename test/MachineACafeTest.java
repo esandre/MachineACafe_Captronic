@@ -11,11 +11,11 @@ public class MachineACafeTest {
         //Etant donné
         MachineACafe machine = MachineACafeBuilder.Default();
         int nbCafe = machine.GetNbCafe();
-        //Quand l’utilisateur met somme >= 40 centimes
-        machine.Insérer( 40 );
+        //Quand l’utilisateur met somme >= au prix du café
+        machine.Insérer(MachineACafe.PrixDuCaféEnCentimes);
 
         //Alors somme encaissée
-        assertThat(machine).encaisse(40);
+        assertThat(machine).encaisse(MachineACafe.PrixDuCaféEnCentimes);
         //Et nb cafés augmente de 1
         assertThat(machine).sertUnCafé(nbCafe);
     }
@@ -28,8 +28,8 @@ public class MachineACafeTest {
                 .SansCafé()
                 .Build();
 
-        //Quand l’utilisateur met somme >= 40 centimes
-        machine.Insérer( 40 );
+        //Quand l’utilisateur met une somme >= au prix du café
+        machine.Insérer( MachineACafe.PrixDuCaféEnCentimes );
 
         //Alors retourne somme
         assertThat(machine).rendLArgent();
@@ -43,8 +43,8 @@ public class MachineACafeTest {
                 .SansEau()
                 .Build();
 
-        //Quand l’utilisateur met somme >= 40 centimes
-        machine.Insérer( 40 );
+        //Quand l’utilisateur met somme >= au prix du café
+        machine.Insérer(MachineACafe.PrixDuCaféEnCentimes);
 
         //Alors retourne somme
         assertThat(machine).rendLArgent();
@@ -58,8 +58,8 @@ public class MachineACafeTest {
                 .SansGobelets()
                 .Build();
 
-        //Quand l’utilisateur met somme >= 40 centimes
-        machine.Insérer( 40 );
+        //Quand l’utilisateur met somme >= au prix du café
+        machine.Insérer( MachineACafe.PrixDuCaféEnCentimes);
 
         //Alors retourne somme
         assertThat(machine).rendLArgent();
@@ -72,8 +72,8 @@ public class MachineACafeTest {
         MachineACafe machine = MachineACafeBuilder.Default();
         int nbCafe = machine.GetNbCafe();
 
-        //Quand l’utilisateur met somme < 40 centimes
-        machine.Insérer( 39 );
+        //Quand l’utilisateur met somme < au prix du café
+        machine.Insérer(MachineACafe.PrixDuCaféEnCentimes - 1);
 
         //Alors somme non encaissée
         assertThat(machine).rendLArgent();

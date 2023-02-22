@@ -1,3 +1,4 @@
+import machine.MachineACafe;
 import machine.paiement.MoteurPaiementAdapter;
 import org.junit.Test;
 import utilities.MachineACafeSpy;
@@ -20,7 +21,7 @@ public class MoteurPaiementTest {
         var sommeDesAppelsAInsérer = machineOriginale.SommeDesAppelsAInsérer();
         assertThat(sommeDesAppelsAInsérer.size()).isEqualTo(1);
         //noinspection OptionalGetWithoutIsPresent
-        assertThat(sommeDesAppelsAInsérer.stream().findFirst().get()).isEqualTo(40);
+        assertThat(sommeDesAppelsAInsérer.stream().findFirst().get()).isEqualTo(MachineACafe.PrixDuCaféEnCentimes);
     }
 
     @Test
