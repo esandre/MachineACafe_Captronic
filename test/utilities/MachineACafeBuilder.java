@@ -1,6 +1,8 @@
 package utilities;
 
+import machine.IRessourcesMachineACafe;
 import machine.MachineACafe;
+import org.mockito.Mockito;
 
 public class MachineACafeBuilder {
 
@@ -14,7 +16,11 @@ public class MachineACafeBuilder {
 
     public MachineACafe Build()
     {
-        var ressources = new RessourcesMock(ayantDesGobelets, ayantDeLEau, ayantDuCafé);
+        IRessourcesMachineACafe ressources = Mockito.mock();
+        Mockito.when(ressources.CaféDisponible()).thenReturn(ayantDuCafé ? 1 : 0);
+        Mockito.when(ressources.EauDisponible()).thenReturn(ayantDeLEau);
+        Mockito.when(ressources.GobeletsDisponibles()).thenReturn(ayantDesGobelets);
+
         return new MachineACafe(ressources);
     }
 
