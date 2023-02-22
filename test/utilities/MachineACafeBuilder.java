@@ -12,8 +12,10 @@ public class MachineACafeBuilder {
         return new MachineACafeBuilder().Build();
     }
 
-    public MachineACafe Build(){
-        return new MachineACafe(ayantDuCafé ? 1 : 0, ayantDeLEau, ayantDesGobelets);
+    public MachineACafe Build()
+    {
+        var ressources = new RessourcesMock(ayantDesGobelets, ayantDeLEau, ayantDuCafé);
+        return new MachineACafe(ressources);
     }
 
     public MachineACafeBuilder SansGobelets(){

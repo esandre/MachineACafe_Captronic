@@ -1,17 +1,12 @@
 package machine;
 
 public class MachineACafe {
-
-    private final boolean eau;
-    private final boolean gobelets;
+    private final IRessourcesMachineACafe ressources;
     private int cafésServis = 0;
     private int sommeEncaisséeEnCentimes = 0;
-    private int stockCafe;
 
-    public MachineACafe(int stockCafe, boolean eau, boolean gobelets) {
-        this.stockCafe = stockCafe;
-        this.eau = eau;
-        this.gobelets = gobelets;
+    public MachineACafe(IRessourcesMachineACafe ressources) {
+        this.ressources = ressources;
     }
 
     public int GetNbCafe() {
@@ -19,7 +14,10 @@ public class MachineACafe {
     }
 
     private boolean PeutServirCafé(int sommeInséréeEnCentimes){
-        return sommeInséréeEnCentimes >= 40 && eau && gobelets && stockCafe > 0;
+        return sommeInséréeEnCentimes >= 40 &&
+                ressources.EauDisponible() &&
+                ressources.CaféDisponible() > 0 &&
+                ressources.GobeletsDisponibles();
     }
 
     public void Insérer(int sommeEnCentimes) {
