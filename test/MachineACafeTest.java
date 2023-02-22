@@ -2,7 +2,7 @@ import machine.MachineACafe;
 import org.junit.Test;
 import utilities.MachineACafeBuilder;
 
-import static org.assertj.core.api.Assertions.*;
+import static utilities.MachineACafeMatchers.assertThat;
 
 public class MachineACafeTest {
     @Test
@@ -15,10 +15,9 @@ public class MachineACafeTest {
         machine.Insert( 40 );
 
         //Alors somme encaissée
-        int somme = machine.GetSomme();
-        assertThat(somme).isEqualTo(40);
+        assertThat(machine).encaisse(40);
         //Et nb cafés augmente de 1
-        assertThat(machine.GetNbCafe()).isEqualTo(nbCafe +1);
+        assertThat(machine).sertUnCafé(nbCafe);
     }
 
     @Test
@@ -34,8 +33,7 @@ public class MachineACafeTest {
         machine.Insert( 40 );
 
         //Alors retourne somme
-        int somme = machine.GetSomme();
-        assertThat(somme).isZero();
+        assertThat(machine).rendLArgent();
     }
 
     @Test
@@ -49,8 +47,7 @@ public class MachineACafeTest {
         machine.Insert( 40 );
 
         //Alors retourne somme
-        int somme = machine.GetSomme();
-        assertThat(somme).isZero();
+        assertThat(machine).rendLArgent();
     }
 
     @Test
@@ -65,8 +62,7 @@ public class MachineACafeTest {
         machine.Insert( 40 );
 
         //Alors retourne somme
-        int somme = machine.GetSomme();
-        assertThat(somme).isZero();
+        assertThat(machine).rendLArgent();
     }
 
     @Test
@@ -80,10 +76,9 @@ public class MachineACafeTest {
         machine.Insert( 39 );
 
         //Alors somme non encaissée
-        int somme = machine.GetSomme();
-        assertThat(somme).isZero();
+        assertThat(machine).rendLArgent();
         //Et nb cafés n'augmente pas
-        assertThat(machine.GetNbCafe()).isEqualTo(nbCafe);
+        assertThat(machine).neSertPasDeCafé(nbCafe);
     }
 }
 
