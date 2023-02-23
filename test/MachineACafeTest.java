@@ -1,6 +1,5 @@
 import machine.MachineACafe;
 import machine.eau.PasAssezEauException;
-import org.junit.Assert;
 import org.junit.Test;
 import utilities.FournisseurEauSpy;
 import utilities.MachineACafeBuilder;
@@ -15,13 +14,13 @@ public class MachineACafeTest {
         //Etant donné
         MachineACafe machine = MachineACafeBuilder.Default();
         int nbCafe = machine.GetNbCafe();
+        int stockSucreInitial = machine.GetStockSucre();
+        int consommationEauInitiale = machine.GetConsommationEau();
         //Quand l’utilisateur met somme >= au prix du café
         machine.Insérer(MachineACafe.PrixDuCaféEnCentimes);
 
-        //Alors somme encaissée
-        assertThat(machine).encaisse(MachineACafe.PrixDuCaféEnCentimes);
-        //Et nb cafés augmente de 1
-        assertThat(machine).sertUnCafé(nbCafe);
+        //Alors on encaisse et sert un café court non sucré
+        assertThat(machine).sertUnCaféCourtNonSucré(nbCafe, stockSucreInitial, consommationEauInitiale);
     }
 
     @Test
@@ -85,10 +84,8 @@ public class MachineACafeTest {
         assertThat(machine).neSertPasDeCafé(nbCafe);
     }
 
-
-
     @Test
-    public void Test_CASDosageEau() throws PasAssezEauException {
+    public void Test_CASDosageEau() {
 
         //Etant donné une machine a café avec un fournisseur d'eau avec du stock
         var fournisseur = new FournisseurEauSpy(5);
@@ -110,7 +107,7 @@ public class MachineACafeTest {
     }
 
     @Test
-    public void Test_CASDosageEau_2() throws PasAssezEauException {
+    public void Test_CASDosageEau_2() {
 
         //Etant donné une machine a café avec un fournisseur d'eau avec du stock
         var fournisseur = new FournisseurEauSpy(5);
@@ -130,13 +127,14 @@ public class MachineACafeTest {
         var machine = MachineACafeBuilder.Default();
         var nbCafésInitiaux = machine.GetNbCafe();
         var stockSucreInitial = machine.GetStockSucre();
+        var consommationEauInitiale = machine.GetConsommationEau();
         machine.DemanderSucre();
 
         //Quand l’utilisateur met une somme >= au prix du café
         machine.Insérer(40);
 
         //Alors un café sucré est payé et servi
-        assertThat(machine).sertUnCaféSucré(nbCafésInitiaux, stockSucreInitial);
+        assertThat(machine).sertUnCaféCourtSucré(nbCafésInitiaux, stockSucreInitial, consommationEauInitiale);
     }
 
     public void Test_Stock_Sucre_Insuffisant(){
@@ -151,7 +149,5 @@ public class MachineACafeTest {
         //    Alors retourne somme et on ne sert pas de café
         assertThat(machine).rendLArgent();
     }
-
-
 }
 

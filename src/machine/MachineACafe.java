@@ -12,7 +12,8 @@ public class MachineACafe implements IMachineACafe {
     private int sommeEncaisséeEnCentimes = 0;
     private final int stockCafe;
     private int stockSucre;
-
+    private int consommationEau;
+    private boolean sucréDemandé;
     private byte nbDeDoseEau = 0;
 
     public MachineACafe(int stockCafe, IFournisseurEau eau, boolean gobelets) {
@@ -30,6 +31,7 @@ public class MachineACafe implements IMachineACafe {
         try {
             nbDeDoseEau++;
             fournisseurEau.Consommer(nbDeDoseEau);
+            consommationEau += nbDeDoseEau;
         } catch (PasAssezEauException e){
             return false;
         }
@@ -44,6 +46,7 @@ public class MachineACafe implements IMachineACafe {
         if(PeutServirCafé(sommeEnCentimes)) {
             cafésServis++;
             sommeEncaisséeEnCentimes = sommeEnCentimes;
+            if(sucréDemandé) stockSucre --;
         }
     }
 
@@ -56,10 +59,14 @@ public class MachineACafe implements IMachineACafe {
     }
 
     public int GetStockSucre() {
-        return stockSucre--;
+        return stockSucre;
     }
 
     public void DemanderSucre() {
+        sucréDemandé = true;
+    }
 
+    public int GetConsommationEau() {
+        return consommationEau;
     }
 }

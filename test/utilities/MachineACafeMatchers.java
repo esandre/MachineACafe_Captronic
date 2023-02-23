@@ -47,14 +47,56 @@ public class MachineACafeMatchers extends AbstractAssert<MachineACafeMatchers, M
         return this;
     }
 
-    public MachineACafeMatchers sertUnCaféSucré(int nombreCafésPrécédent, int stockSucrePrécédent){
+    public MachineACafeMatchers consommeNDosesEau(int consommationAttendue, int consommationEauPrécédente){
+        int consommationEauActuelle = actual.GetConsommationEau();
+
+        if(consommationEauActuelle != consommationEauPrécédente + consommationAttendue){
+            failWithMessage("Il était attendu que la machine consomme %s volumes d'eau. Elle en a consommé %s",
+                    consommationAttendue, consommationEauActuelle - consommationEauPrécédente);
+        }
+
+        return this;
+    }
+
+    public MachineACafeMatchers consommeNDosesDeSucre(int consommationAttendue, int stockSucrePrécédent){
+        if(actual.GetStockSucre() != stockSucrePrécédent - consommationAttendue){
+            failWithMessage("Il était attendu que la machine consomme %s doses de sucre. Elle en a consommé %s",
+                    consommationAttendue, actual.GetStockSucre() - stockSucrePrécédent);
+        }
+
+        return this;
+    }
+
+    public MachineACafeMatchers sertUnCaféLong(int nombreCafésPrécédent, int consommationEauPrécédente){
         assertThat(actual).sertUnCafé(nombreCafésPrécédent);
         assertThat(actual).encaisse(MachineACafe.PrixDuCaféEnCentimes);
+        assertThat(actual).consommeNDosesEau(2, consommationEauPrécédente);
+        return this;
+    }
 
-        if(actual.GetStockSucre() != stockSucrePrécédent - 1){
-            failWithMessage("Il était attendu que la machine consomme une dose de sucre. Elle en a consommé %s",
-                    actual.GetStockSucre() - stockSucrePrécédent);
-        }
+    public MachineACafeMatchers sertUnCaféCourtNonSucré(int nombreCafésPrécédent, int stockSucrePrécédent, int consommationEauPrécédente){
+        assertThat(actual).sertUnCafé(nombreCafésPrécédent);
+        assertThat(actual).encaisse(MachineACafe.PrixDuCaféEnCentimes);
+        assertThat(actual).consommeNDosesEau(1, consommationEauPrécédente);
+        assertThat(actual).consommeNDosesDeSucre(0, stockSucrePrécédent);
+
+        return this;
+    }
+
+    public MachineACafeMatchers sertUnCaféCourtSucré(int nombreCafésPrécédent, int stockSucrePrécédent, int consommationEauPrécédente){
+        assertThat(actual).sertUnCafé(nombreCafésPrécédent);
+        assertThat(actual).encaisse(MachineACafe.PrixDuCaféEnCentimes);
+        assertThat(actual).consommeNDosesEau(1, consommationEauPrécédente);
+        assertThat(actual).consommeNDosesDeSucre(1, stockSucrePrécédent);
+
+        return this;
+    }
+
+    public MachineACafeMatchers sertUnCaféLongSucré(int nombreCafésPrécédent, int stockSucrePrécédent, int consommationEauPrécédente){
+        assertThat(actual).sertUnCafé(nombreCafésPrécédent);
+        assertThat(actual).encaisse(MachineACafe.PrixDuCaféEnCentimes);
+        assertThat(actual).consommeNDosesEau(2, consommationEauPrécédente);
+        assertThat(actual).consommeNDosesDeSucre(1, stockSucrePrécédent);
 
         return this;
     }
