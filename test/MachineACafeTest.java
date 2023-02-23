@@ -107,5 +107,20 @@ public class MachineACafeTest {
         //Et on a consommé un café long (2 doses)
         Assert.assertEquals(2, fournisseur.eauconsomme);
     }
+
+    @Test
+    public void Test_CASDosageEau_2() throws PasAssezEauException {
+
+        //Etant donné une machine a café avec un fournisseur d'eau avec du stock
+        var fournisseur = new FournisseurEauSpy(5);
+        MachineACafe machine = new MachineACafeBuilder()
+                .AyantPourFournisseurEau(fournisseur)
+                .Build();
+        //Quand presse café long
+        machine.pressCafeLong();
+
+        //Alors on ne consommme pas d'eau
+        Assert.assertEquals(0, fournisseur.eauconsomme);
+    }
 }
 
