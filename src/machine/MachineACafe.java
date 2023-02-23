@@ -46,6 +46,7 @@ public class MachineACafe implements IMachineACafe {
             cafésServis++;
             sommeEncaisséeEnCentimes = sommeEnCentimes;
             if(sucréDemandé) stockSucre --;
+            nbDeDoseEau = 0;
         }
     }
 

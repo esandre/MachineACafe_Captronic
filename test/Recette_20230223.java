@@ -7,7 +7,7 @@ import static utilities.MachineACafeMatchers.assertThat;
 
 public class Recette_20230223 {
     @Test
-    @Ignore("Test de recette")
+    //@Ignore("Test de recette")
     public void Scenario1(){
         var machine = new MachineACafeBuilder().Build();
 
