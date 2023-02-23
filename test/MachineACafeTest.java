@@ -5,6 +5,7 @@ import org.junit.Test;
 import utilities.FournisseurEauSpy;
 import utilities.MachineACafeBuilder;
 
+import static org.junit.Assert.assertEquals;
 import static utilities.MachineACafeMatchers.assertThat;
 
 public class MachineACafeTest {
@@ -105,7 +106,7 @@ public class MachineACafeTest {
         //Et on consomme un café
         assertThat(machine).sertUnCafé(nbCafe);
         //Et on a consommé un café long (2 doses)
-        Assert.assertEquals(2, fournisseur.eauconsomme);
+        assertEquals(2, fournisseur.eauconsomme);
     }
 
     @Test
@@ -120,7 +121,26 @@ public class MachineACafeTest {
         machine.pressCafeLong();
 
         //Alors on ne consommme pas d'eau
-        Assert.assertEquals(0, fournisseur.eauconsomme);
+        assertEquals(0, fournisseur.eauconsomme);
+    }
+
+    @Test
+    public void Test_Ajout_Sucre(){
+        //Etant donné bouton sucre appuyé
+        var machine = MachineACafeBuilder.Default();
+        var nbCafésInitiaux = machine.GetNbCafe();
+        var stockSucreInitial = machine.GetStockSucre();
+        machine.DemanderSucre();
+
+        //Quand l’utilisateur met une somme >= au prix du café
+        machine.Insérer(40);
+
+        //Alors somme encaissée
+        assertThat(machine).encaisse(MachineACafe.PrixDuCaféEnCentimes);
+        //Et nb cafés augmente de 1
+        assertThat(machine).sertUnCafé(nbCafésInitiaux);
+        //Et stock sucre diminue de 1
+        assertEquals(stockSucreInitial - 1, machine.GetStockSucre());
     }
 }
 

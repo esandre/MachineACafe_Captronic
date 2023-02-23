@@ -11,6 +11,7 @@ public class MachineACafe implements IMachineACafe {
     private int cafésServis = 0;
     private int sommeEncaisséeEnCentimes = 0;
     private final int stockCafe;
+    private int stockSucre;
 
     private byte nbDeDoseEau = 0;
 
@@ -18,6 +19,7 @@ public class MachineACafe implements IMachineACafe {
         this.stockCafe = stockCafe;
         this.fournisseurEau = eau;
         this.gobelets = gobelets;
+        this.stockSucre = 1;
     }
 
     public int GetNbCafe() {
@@ -51,5 +53,13 @@ public class MachineACafe implements IMachineACafe {
 
     public void pressCafeLong() {
         nbDeDoseEau ++;
+    }
+
+    public int GetStockSucre() {
+        return stockSucre--;
+    }
+
+    public void DemanderSucre() {
+
     }
 }
