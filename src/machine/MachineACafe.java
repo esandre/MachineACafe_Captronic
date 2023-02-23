@@ -29,7 +29,10 @@ public class MachineACafe implements IMachineACafe {
             return false;
         }
 
-        return sommeInséréeEnCentimes >= PrixDuCaféEnCentimes && gobelets && stockCafe > 0;
+        return sommeInséréeEnCentimes >= PrixDuCaféEnCentimes
+                && gobelets
+                && stockCafe > 0
+                && cafésServis < 4;
     }
 
     public void Insérer(int sommeEnCentimes) {
