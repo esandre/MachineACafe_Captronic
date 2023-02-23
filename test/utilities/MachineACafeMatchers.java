@@ -25,7 +25,7 @@ public class MachineACafeMatchers extends AbstractAssert<MachineACafeMatchers, M
 
     public MachineACafeMatchers encaisse(int somme){
         if(actual.GetSommeEnCentimes() != somme){
-            failWithMessage("Il était attendu que la machine encaise %s. Elle a encaissé %s",
+            failWithMessage("Il était attendu que la machine encaisse %s. Elle a encaissé %s",
                     somme, actual.GetSommeEnCentimes());
         }
         return this;
@@ -44,6 +44,18 @@ public class MachineACafeMatchers extends AbstractAssert<MachineACafeMatchers, M
             failWithMessage("Il était attendu que la machine serve un café. Elle en a servi %s",
                     actual.GetNbCafe() - nombrePrécédent);
         }
+        return this;
+    }
+
+    public MachineACafeMatchers sertUnCaféSucré(int nombreCafésPrécédent, int stockSucrePrécédent){
+        assertThat(actual).sertUnCafé(nombreCafésPrécédent);
+        assertThat(actual).encaisse(MachineACafe.PrixDuCaféEnCentimes);
+
+        if(actual.GetStockSucre() != stockSucrePrécédent - 1){
+            failWithMessage("Il était attendu que la machine consomme une dose de sucre. Elle en a consommé %s",
+                    actual.GetStockSucre() - stockSucrePrécédent);
+        }
+
         return this;
     }
 }

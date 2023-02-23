@@ -135,12 +135,8 @@ public class MachineACafeTest {
         //Quand l’utilisateur met une somme >= au prix du café
         machine.Insérer(40);
 
-        //Alors somme encaissée
-        assertThat(machine).encaisse(MachineACafe.PrixDuCaféEnCentimes);
-        //Et nb cafés augmente de 1
-        assertThat(machine).sertUnCafé(nbCafésInitiaux);
-        //Et stock sucre diminue de 1
-        assertEquals(stockSucreInitial - 1, machine.GetStockSucre());
+        //Alors un café sucré est payé et servi
+        assertThat(machine).sertUnCaféSucré(nbCafésInitiaux, stockSucreInitial);
     }
 }
 
