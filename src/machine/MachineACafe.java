@@ -38,8 +38,7 @@ public class MachineACafe implements IMachineACafe {
 
         return sommeInséréeEnCentimes >= PrixDuCaféEnCentimes
                 && gobelets
-                && stockCafe > 0
-                && cafésServis < 4;
+                && stockCafe > 0;
     }
 
     public void Insérer(int sommeEnCentimes) {
