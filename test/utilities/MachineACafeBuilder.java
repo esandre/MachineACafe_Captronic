@@ -7,6 +7,8 @@ import java.util.Optional;
 public class MachineACafeBuilder {
     private boolean ayantDesGobelets = true;
     private boolean ayantDuCafé = true;
+
+    private boolean ayantDuSucre = true;
     private Optional<IFournisseurEau> fournisseurEau = Optional.empty();
 
     public static MachineACafe Default() {
@@ -35,6 +37,11 @@ public class MachineACafeBuilder {
 
     public MachineACafeBuilder SansCafé() {
         ayantDuCafé = false;
+        return this;
+    }
+
+    public MachineACafeBuilder SansSucre() {
+        ayantDuSucre = false;
         return this;
     }
 }

@@ -138,5 +138,20 @@ public class MachineACafeTest {
         //Alors un café sucré est payé et servi
         assertThat(machine).sertUnCaféSucré(nbCafésInitiaux, stockSucreInitial);
     }
+
+    public void Test_Stock_Sucre_Insuffisant(){
+
+        //Etant donné bouton sucre appuyé et stock sucre insuffisant
+        var machine = new MachineACafeBuilder()
+                .SansSucre()
+                .Build();
+        //    Quand l’utilisateur met somme >= au prix du café
+        machine.Insérer(40);
+
+        //    Alors retourne somme et on ne sert pas de café
+        assertThat(machine).rendLArgent();
+    }
+
+
 }
 
