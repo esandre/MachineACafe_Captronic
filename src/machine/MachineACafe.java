@@ -45,4 +45,8 @@ public class MachineACafe implements IMachineACafe {
     public int GetSommeEnCentimes() {
         return sommeEncaisséeEnCentimes;
     }
+
+    public void pressCafeLong() throws PasAssezEauException {
+        fournisseurEau.Consommer(1);//todo code stupide à tester
+    }
 }

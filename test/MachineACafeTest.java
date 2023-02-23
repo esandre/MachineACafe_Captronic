@@ -1,4 +1,5 @@
 import machine.MachineACafe;
+import machine.eau.PasAssezEauException;
 import org.junit.Assert;
 import org.junit.Test;
 import utilities.FournisseurEauSpy;
@@ -86,8 +87,7 @@ public class MachineACafeTest {
 
 
     @Test
-    public void Test_CASDosageEau()
-    {
+    public void Test_CASDosageEau() throws PasAssezEauException {
 
         //Etant donné une machine a café avec un fournisseur d'eau avec du stock
         var fournisseur = new FournisseurEauSpy(5);
@@ -95,7 +95,7 @@ public class MachineACafeTest {
                 .AyantPourFournisseurEau(fournisseur)
                 .Build();
         int nbCafe = machine.GetNbCafe();
-       // machine.pressCafeLong();
+        machine.pressCafeLong();
 
         //Quand l’utilisateur met >4 au prix du café
         machine.Insérer(MachineACafe.PrixDuCaféEnCentimes );
